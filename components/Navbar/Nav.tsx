@@ -6,11 +6,16 @@ import { Button } from "../ui/button";
 import { ModeToggle } from "./Mode";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import { SignOut } from "../signOUt/signout-button";
+import { useSession } from "next-auth/react";
+import Profile from "../Profile/profile";
 
 const Nav = () => {
   const router = usePathname();
   const navigate = useRouter();
   const [hidden, sethidden] = useState<boolean | undefined>(false);
+  const { data: session } = useSession();
+  console.log("session", session);
 
   useEffect(() => {
     if (router === "/signin") {
@@ -57,15 +62,20 @@ const Nav = () => {
 
       <div className=" flex items-center gap-5">
         <ModeToggle />
-        <Button
-          className=" px-2"
-          variant={"outline"}
-          onClick={() => {
-            navigate.push("/signin");
-          }}
-        >
-          Sign In
-        </Button>
+
+        {session?.user ? (
+          <Profile />
+        ) : (
+          <Button
+            className=" px-2"
+            variant={"outline"}
+            onClick={() => {
+              navigate.push("/signin");
+            }}
+          >
+            Sign In
+          </Button>
+        )}
       </div>
     </div>
   );

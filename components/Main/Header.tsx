@@ -25,7 +25,7 @@ const Header = () => {
       </p>
       <div className=" flex items-center gap-3">
         <Button className=" dark:bg-red-700   dark:hover:bg-red-600     text-neutral-100  ">
-          Get Started
+          <Link href="/dashboard">Get Started</Link>
         </Button>
         <Button
           variant={"outline"}
