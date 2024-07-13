@@ -27,7 +27,7 @@ import Link from "next/link";
 const Profile = () => {
   const { data: session } = useSession();
   const imageUrl = session?.user?.image || "";
-  console.log(imageUrl, "imageUrl");
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -45,10 +45,10 @@ const Profile = () => {
         align="end"
         className=" w-48 "
       >
-        <DropdownMenuLabel>
-          <p>{session?.user?.name}</p>
+        <DropdownMenuLabel className=" flex  flex-col gap-1 ">
+          <p className=" font-normal">{session?.user?.name}</p>
 
-          <p className="text-xs  text-muted-foreground ">
+          <p className="text-xs font-normal  text-muted-foreground ">
             {session?.user?.email}
           </p>
         </DropdownMenuLabel>
@@ -59,7 +59,7 @@ const Profile = () => {
               href="/dashboard"
               className=" flex items-center"
             >
-              <Boxes className="mr-1 h-5 w-5" />
+              <Boxes className="mr-2 h-5 w-5" />
               Dashboard
             </Link>
           </DropdownMenuItem>
@@ -68,7 +68,7 @@ const Profile = () => {
               href="/activities"
               className=" flex items-center"
             >
-              <Activity className="mr-1 h-5 w-5" />
+              <Activity className="mr-2 h-5 w-5" />
               Activities
             </Link>{" "}
           </DropdownMenuItem>
@@ -77,7 +77,7 @@ const Profile = () => {
               href="/dashboard"
               className=" flex items-center"
             >
-              <Settings className="mr-1 h-5 w-5" />
+              <Settings className="mr-2 h-5 w-5" />
               Settings
             </Link>
           </DropdownMenuItem>
