@@ -23,6 +23,9 @@ const CardWrapper = ({ children, description }: Props) => {
       </ScrollArea>
     );
 
+  if (description === "streak")
+    return <div className=" h-[260px] grid grid-cols-2  gap-3">{children}</div>;
+
   return (
     <Card className="h-[260px]  ">
       <CardContent>{children}</CardContent>
