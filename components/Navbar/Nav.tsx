@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { ModeToggle } from "./Mode";
 import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
+import { usePathname, redirect } from "next/navigation";
 import { SignOut } from "../signOUt/signout-button";
 import { useSession } from "next-auth/react";
 import Profile from "../Profile/profile";
@@ -70,7 +70,7 @@ const Nav = () => {
             className=" px-2"
             variant={"outline"}
             onClick={() => {
-              navigate.push("/signin");
+              redirect("/signin");
             }}
           >
             Sign In

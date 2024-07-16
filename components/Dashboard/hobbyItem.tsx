@@ -4,6 +4,7 @@ import { Card, CardContent } from "../ui/card";
 import { Ellipsis } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
+
 const HobbyItem = () => {
   return (
     <Card className=" w-full h-[100px] rounded-sm    px-0 mx-0">

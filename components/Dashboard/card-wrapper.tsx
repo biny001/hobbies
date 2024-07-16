@@ -13,9 +13,10 @@ import { Separator } from "../ui/separator";
 interface Props {
   children: React.ReactNode;
   description?: string;
+  height?: string;
 }
 
-const CardWrapper = ({ children, description }: Props) => {
+const CardWrapper = ({ children, description, height }: Props) => {
   if (description === "hobbies")
     return (
       <ScrollArea className="h-[260px] rounded-md border  ">
@@ -27,7 +28,7 @@ const CardWrapper = ({ children, description }: Props) => {
     return <div className=" h-[260px] grid grid-cols-2  gap-3">{children}</div>;
 
   return (
-    <Card className="h-[260px]  ">
+    <Card className={` ${height ? `h-[${height}]` : "h-[260px]"}   `}>
       <CardContent>{children}</CardContent>
     </Card>
   );
