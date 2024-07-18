@@ -1,13 +1,14 @@
-import { Button } from "@/components/ui/button";
-import CardWrapper from "@/components/Dashboard/card-wrapper";
 import HobbyItem from "@/components/Dashboard/hobbyItem";
-import { Loader2 } from "lucide-react";
+
 import AddActivity from "@/components/Dashboard/add-activity";
 
 const page = async () => {
-  const response = await fetch("http://localhost:3000/api/activities", {
-    next: { tags: ["activities"] },
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities`,
+    {
+      next: { tags: ["activities"] },
+    }
+  );
   const activities = await response.json();
   console.log(activities, "This is my activities");
   return (

@@ -13,7 +13,7 @@ import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 import { HexColorPicker } from "react-colorful";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+ 
 import { useRouter } from "next/navigation";
 
 const Content = ({ params }: { params: string }) => {
