@@ -3,7 +3,6 @@ import CardWrapper from "@/components/Dashboard/card-wrapper";
 import HobbyItem from "@/components/Dashboard/hobbyItem";
 import { Loader2 } from "lucide-react";
 import AddActivity from "@/components/Dashboard/add-activity";
-import { prisma } from "@/app/api/habits/route";
 
 const page = async () => {
   const response = await fetch("http://localhost:3000/api/activities", {
