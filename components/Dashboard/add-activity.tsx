@@ -26,9 +26,6 @@ const AddActivity = () => {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    fetchActivities();
-  }, []);
 
   return (
     <Button

@@ -1,23 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 
 import { auth } from "@/auth";
-import { redirect } from "next/navigation";
-import { permanentRedirect } from "next/navigation";
+import { revalidateTag } from "next/cache";
 
 const prisma = new PrismaClient();
 
 export async function GET(request: Request) {
   // Create a promise that resolves after 3 seconds
-  const delay = (ms: number) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
-
-  // Await the delay
-  await delay(3000);
+  const activities = await prisma.habit.findMany();
 
   // Return the response after the delay
-  return new Response(JSON.stringify({ message: "Hello" }), {
-    headers: { "Content-Type": "application/json" },
-  });
+  return Response.json(activities, { status: 200 });
 }
 
 export async function POST(request: Request) {
@@ -38,17 +31,35 @@ export async function POST(request: Request) {
     data: {
       title: "",
       userId: user.id,
+      color: "#ff2323",
       updatedAt: new Date(),
     },
   });
-  console.log(habit, "This is my habit");
+  // console.log(habit, "This is my habit");
 
   //   redirect(`/dashboard/activities/${habit.id}/settings`);
   return Response.json({ habitId: habit.id }, { status: 201 });
 }
 
 export async function PUT(request: Request) {
-  console.log(request.body);
+  console.log("here is the put request");
+  const body = await request.json();
+
+  const habit = await prisma.habit.update({
+    where: {
+      id: body.id,
+    },
+    data: {
+      title: body.data.title,
+      description: body.data.description,
+      color: body.data.color,
+      updatedAt: new Date(),
+    },
+  });
+
+  console.log(habit, "This is my habit");
+
+  revalidateTag("activities");
 
   return new Response(null, {
     status: 200,

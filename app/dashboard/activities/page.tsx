@@ -1,12 +1,16 @@
-"use client";
-import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import CardWrapper from "@/components/Dashboard/card-wrapper";
 import HobbyItem from "@/components/Dashboard/hobbyItem";
 import { Loader2 } from "lucide-react";
 import AddActivity from "@/components/Dashboard/add-activity";
+import { prisma } from "@/app/api/habits/route";
 
-const page = () => {
+const page = async () => {
+  const response = await fetch("http://localhost:3000/api/activities", {
+    next: { tags: ["activities"] },
+  });
+  const activities = await response.json();
+  console.log(activities, "This is my activities");
   return (
     <div className=" flex flex-col items-center justify-center gap-4 p-4">
       <div className=" flex-col md:flex-row flex items-center justify-between w-full gap-6">

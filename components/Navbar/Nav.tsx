@@ -70,7 +70,7 @@ const Nav = () => {
             className=" px-2"
             variant={"outline"}
             onClick={() => {
-              redirect("/signin");
+              navigate.push("/signin");
             }}
           >
             Sign In
