@@ -67,3 +67,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* @layer base {
+  .heatmap-container {
+    @apply w-full overflow-x-auto;
+    @apply lg:w-full;
+  }
+  .heatmap {
+    height: calc(
+      7.6 * (20px + 5px)
+    ); /* 7 days a week, rectSize=20px, space=5px */
+/* width: calc(
+      36 * (20px + 5px)
+    ); 24 hours a day, rectSize=20px, space=5px */
+/* }
+} */
