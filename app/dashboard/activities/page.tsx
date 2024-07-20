@@ -1,6 +1,7 @@
 import HobbyItem from "@/components/Dashboard/hobbyItem";
 
 import AddActivity from "@/components/Dashboard/add-activity";
+import { Habit } from "@prisma/client";
 
 const page = async () => {
   const response = await fetch(
@@ -24,7 +25,14 @@ const page = async () => {
       </div>
 
       <div className=" flex flex-col w-full mt-8 ">
-        <HobbyItem />
+        {activities.map((activity: Habit) => {
+          return (
+            <HobbyItem
+              activities={activity}
+              key={activity?.id}
+            />
+          );
+        })}
       </div>
     </div>
   );

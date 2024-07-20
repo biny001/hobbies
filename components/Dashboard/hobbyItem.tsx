@@ -4,19 +4,32 @@ import { Card, CardContent } from "../ui/card";
 import { Ellipsis } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
+import { Habit } from "@prisma/client";
+import { formatDate } from "@/lib/helper";
+import Link from "next/link";
 
-const HobbyItem = () => {
+interface Props {
+  activities: Habit;
+}
+
+const HobbyItem = ({ activities }: Props) => {
   return (
     <Card className=" w-full h-[100px] rounded-sm    px-0 mx-0">
       <div className=" px-3 flex h-full items-center justify-between">
         <div className=" flex items-center  gap-3 px-1 ">
           <div
             id="color"
-            className=" w-3 h-3 bg-white rounded-full"
+            style={{ backgroundColor: activities?.color }}
+            className="w-3 h-3 rounded-full"
           ></div>
           <div className=" flex  flex-col">
-            <h3 className=" text-xl">Coding</h3>
-            <p className=" text-xs   text-muted-foreground">Jul 8,2024</p>
+            <Link href={`/dashboard/activities/${activities?.id}`}>
+              <h3 className=" text-xl">{activities?.title}</h3>
+            </Link>
+
+            <p className=" text-xs   text-muted-foreground">
+              {formatDate(activities?.createdAt)}
+            </p>
           </div>
         </div>
 
